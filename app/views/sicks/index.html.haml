@@ -1,0 +1,52 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('breadcrumbs.sicks')
+
+%h1= t('headers.sicks.index')
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_sick_path, class: 'btn btn-success text-white' do
+      = fa_icon :plus
+      = t('buttons.new.sick')
+    = link_to search_sicks_path, class: 'btn btn-info text-white' do
+      = fa_icon :search
+      = t('buttons.search.sick')
+
+%table.table.table-sm
+  %thead
+    %tr
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:id)
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:first_name)
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:last_name)
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:patronymic)
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:sex)
+      %th{:scope => "col"}
+        = Sick.human_attribute_name(:policy)
+  %tbody
+    - @sicks.each do |sick|
+      %tr
+        %th{:scope => "row"}
+          = sick.id
+        %td
+          = sick.first_name
+        %td
+          = sick.last_name
+        %td
+          = sick.patronymic
+        %td
+          = sick.sex
+        %td
+          = link_to sick, :method => :delete,
+          :data => { :confirm => t('buttons.confirm.sick') },
+          class: 'btn btn-danger text-white' do
+            = fa_icon :times
+            = t('buttons.destroy')

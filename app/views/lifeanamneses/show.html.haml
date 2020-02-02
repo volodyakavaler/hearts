@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Marital status:
+  = @lifeanamnese.marital_status
+%p
+  %b Children:
+  = @lifeanamnese.children
+%p
+  %b Smoking:
+  = @lifeanamnese.smoking
+%p
+  %b Alcohol consumption:
+  = @lifeanamnese.alcohol_consumption
+%p
+  %b Drug use:
+  = @lifeanamnese.drug_use
+%p
+  %b Job:
+  = @lifeanamnese.job
+%p
+  %b Nutrition:
+  = @lifeanamnese.nutrition
+%p
+  %b Living conditions:
+  = @lifeanamnese.living_conditions
+%p
+  %b Past illnesses:
+  = @lifeanamnese.past_illnesses
+%p
+  %b Sick:
+  = @lifeanamnese.sick
+
+= link_to 'Edit', edit_lifeanamnese_path(@lifeanamnese)
+\|
+= link_to 'Back', lifeanamneses_path

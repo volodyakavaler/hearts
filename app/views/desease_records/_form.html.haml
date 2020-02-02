@@ -1,0 +1,33 @@
+= form_for @desease_record do |f|
+  = error_messages_for @desease_record
+  = f.hidden_field :sick_id, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :start_date
+        = f.date_select :start_date,  class: 'form-control'
+
+    .col-md-4
+      .form-group
+        = f.label :finish_date
+        = f.date_select :finish_date
+    .col-md-3
+      .form-group
+        = f.label :result
+        = f.text_field :result, class: 'form-control'
+
+    .col-md-4
+      .form-group
+        = f.label :disease_classification
+        = f.text_field :disease_classification, class: 'form-control'
+
+    .col-md-4
+      .form-group
+        = f.label :sick_id
+
+  .field
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

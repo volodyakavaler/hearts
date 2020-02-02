@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Start date:
+  = @desease_record.start_date
+%p
+  %b Finish date:
+  = @desease_record.finish_date
+%p
+  %b Result:
+  = @desease_record.result
+%p
+  %b Disease classification:
+  = @desease_record.disease_classification
+%p
+  %b Description:
+  = @desease_record.description
+%p
+  %b Sick:
+  = @desease_record.sick.id
+
+= link_to 'Edit', edit_desease_record_path(@desease_record)
+\|
+= link_to 'Back', desease_records_path

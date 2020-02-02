@@ -1,0 +1,31 @@
+%h1 Listing desease_records
+
+%table
+  %thead
+    %tr
+      %th Start date
+      %th Finish date
+      %th Result
+      %th Disease classification
+      %th Description
+      %th Sick
+      %th
+      %th
+      %th
+
+  %tbody
+    - @desease_records.each do |desease_record|
+      %tr
+        %td= desease_record.start_date
+        %td= desease_record.finish_date
+        %td= desease_record.result
+        %td= desease_record.disease_classification
+        %td= desease_record.description
+        %td= desease_record.sick
+        %td= link_to 'Show', desease_record
+        %td= link_to 'Edit', edit_desease_record_path(desease_record)
+        %td= link_to 'Destroy', desease_record, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Desease record', new_desease_record_path

@@ -1,0 +1,57 @@
+= df.hidden_field :id
+-# %p Данные о семье:
+.row
+  .col-md-3
+    .form-group
+      = df.label :marital_status
+      = df.select :marital_status, ["женат/замужем", "неженат/незамужем", "другое"],
+        {include_blank: false}, class: 'custom-select'
+  .col-md-3
+    .form-group
+      = df.label :children
+      = df.select :children, ["нет", "несовершеннолетние", "совершеннолетние"], {include_blank: false}, class: 'custom-select'
+-# %p Условия жизни:
+.row
+  .col-md-6
+    .form-group
+      = df.label :job
+      = df.text_field :job, class: 'form-control'
+  .col-md-3
+    .form-group
+      = df.label :living_conditions
+      = df.select :living_conditions,
+        ["квартира", "частный дом"],
+        {include_blank: false}, class: 'custom-select'
+  .col-md-3
+    .form-group
+      = df.label :nutrition
+      = df.select :nutrition,
+        ["регулярное", "нерегулярное"],
+        {include_blank: false}, class: 'custom-select'
+-# %p Вредные привычки:
+.row
+  .col-md-3
+    .form-group
+      = df.label :smoking
+      = df.select :smoking,
+        ["не курит", "меньше одной пачки в день", "больше 1 пачки в день"],
+        {include_blank: false}, class: 'custom-select'
+  .col-md-3
+    .form-group
+      = df.label :alcohol_consumption
+      = df.select :alcohol_consumption,
+        ["не употребляет", "редко", "часто"],
+        {include_blank: false}, class: 'custom-select'
+  .col-md-3
+    .form-group
+      = df.label :drug_use
+      = df.select :drug_use,
+        ["отрицает", "не отрицает"],
+        {include_blank: false}, class: 'custom-select'
+
+-# %p Данные о перенесённых заболеваниях:
+.row
+  .col-md-12
+    .form-group
+      = df.label :past_illnesses
+      = df.text_area :past_illnesses, class: 'form-control'

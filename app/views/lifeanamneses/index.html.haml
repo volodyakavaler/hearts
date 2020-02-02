@@ -1,0 +1,39 @@
+%h1 Listing lifeanamneses
+
+%table
+  %thead
+    %tr
+      %th Marital status
+      %th Children
+      %th Smoking
+      %th Alcohol consumption
+      %th Drug use
+      %th Job
+      %th Nutrition
+      %th Living conditions
+      %th Past illnesses
+      %th Sick
+      %th
+      %th
+      %th
+
+  %tbody
+    - @lifeanamneses.each do |lifeanamnese|
+      %tr
+        %td= lifeanamnese.marital_status
+        %td= lifeanamnese.children
+        %td= lifeanamnese.smoking
+        %td= lifeanamnese.alcohol_consumption
+        %td= lifeanamnese.drug_use
+        %td= lifeanamnese.job
+        %td= lifeanamnese.nutrition
+        %td= lifeanamnese.living_conditions
+        %td= lifeanamnese.past_illnesses
+        %td= lifeanamnese.sick_id
+        %td= link_to 'Show', lifeanamnese
+        %td= link_to 'Edit', edit_lifeanamnese_path(lifeanamnese)
+        %td= link_to 'Destroy', lifeanamnese, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Lifeanamnese', new_lifeanamnese_path

@@ -1,0 +1,2 @@
+module DeseaseRecordsHelper
+end

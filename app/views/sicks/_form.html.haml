@@ -1,0 +1,55 @@
+= form_for @sick do |f|
+  = error_messages_for @sick
+  .row
+    .col-md-3
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, class: 'form-control'
+        -# = f.error_messages_for(:first_name)
+    .col-md-3
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, class: 'form-control'
+        -# = f.error_messages_for(:last_name)
+    .col-md-3
+      .form-group
+        = f.label :patronymic
+        = f.text_field :patronymic, class: 'form-control'
+        -# = f.error_messages_for(:patronymic)
+    .col-md-1
+      .form-group
+        = f.label :sex
+        = f.select :sex, ["М", "Ж"], {include_blank: true}, class: 'custom-select'
+        -# = f.error_messages_for(:sex)
+    .col-md-2
+      .form-group
+        = f.label :date_of_birth
+        = f.text_field :date_of_birth, :id => "datepicker", class: 'form-control'
+
+  .row
+    .col-md-9
+      .form-group
+        = f.label :address
+        = f.text_field :address, class: 'form-control'
+        -# = f.error_messages_for(:address)
+    .col-md-3
+      .form-group
+        = f.label :phone
+        = f.text_field :phone, class: 'form-control'
+        -# = f.error_messages_for(:phone)
+  .row
+    .col-md-9
+      .form-group
+        = f.label :passport
+        = f.text_field :passport, class: 'form-control'
+        -# = f.error_messages_for(:passport)
+    .col-md-3
+      .form-group
+        = f.label :policy
+        = f.text_field :policy, class: 'form-control'
+
+
+  -# = f.fields_for :lifeanamnese do |df|
+  -#   = render('sicks/lifeanamnese_form', df: df)
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

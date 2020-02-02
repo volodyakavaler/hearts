@@ -1,0 +1,21 @@
+%nav#sidebar
+  .custom-menu
+    %button#sidebarCollapse.btn.btn-primary{:type => "button"}
+  .img.bg-wrap.text-center.py-4{:style => "background-image: url(images/bg_1.jpg);"}
+    .user-logo
+      .img
+        .background-image
+          =image_tag('logo.png', height: '100', width: '100')
+      %h3 Heart Listiner
+  %ul.list-unstyled.components.mb-5
+    - side_bar_items.each do |item|
+      - if item[:controller].to_s == controller.controller_name
+        %li.active
+          = link_to(url_for(controller: item[:controller], action: item[:action]), class: item[:class]) do
+            = fa_icon(item[:icon], class: "mr-3")
+            = item[:name]
+      - else
+        %li
+          = link_to(url_for(controller: item[:controller], action: item[:action]), class: item[:class]) do
+            = fa_icon(item[:icon], class: "mr-3")
+            = item[:name]

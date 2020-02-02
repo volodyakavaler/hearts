@@ -1,0 +1,203 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " " + @sick.policy
+
+%h1= @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " /" + @sick.policy
+= link_to sicks_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+
+
+%p
+
+.card
+  .card-header
+    .float-left
+      %h5 Карточка пациента № #{@sick.id.to_s} от #{@sick.created_at.to_s}
+    .float-right
+      .btn-group{"aria-label" => "Basic example", :role => "group"}
+        -# TODO
+        %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+        = link_to edit_sick_path(@sick), class: 'btn btn-info text-white' do
+          = fa_icon :edit
+          = t('buttons.edit')
+        = link_to @sick, :method => :delete, :data => { :confirm => t('buttons.confirm.sick') }, class: 'btn btn-danger text-white' do
+          = fa_icon "skull-crossbones"
+          = t('buttons.destroy')
+  .card-body
+    -# %h5.card-title Специальный заголовок
+    %p.card-text Основные данные:
+    .row
+      .col-md-12
+        .form-group
+          %table.table.table-bordered
+            %tbody
+              %tr
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:first_name)
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:last_name)
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:patronymic)
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:date_of_birth)
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:sex)
+              %tr
+                %td
+                  = @sick.first_name
+                %td
+                  = @sick.last_name
+                %td
+                  = @sick.patronymic
+                %td
+                  = @sick.date_of_birth
+                %td
+                  = @sick.sex
+    .row
+      .col-md-5
+        .form-group
+          %p.card-text Документы:
+          %table.table.table-bordered
+            %tbody
+              %tr
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:policy)
+                %td
+                  = @sick.policy
+              %tr
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:passport)
+                %td
+                  = @sick.passport
+      .col-md-7
+        .form-group
+          %p.card-text Контактные данные:
+          %table.table.table-bordered
+            %tbody
+              %tr
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:address)
+                %td
+                  = @sick.address
+              %tr
+                %th{:scope => "col"}
+                  = Sick.human_attribute_name(:phone)
+                %td
+                  = @sick.phone
+%p
+.card
+  .card-header
+    .float-left
+      %h5 Анамнез жизни
+    .float-right
+      - unless @sick.lifeanamnese.nil?
+        .btn-group{"aria-label" => "Basic example", :role => "group"}
+          -# TODO
+          %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+          = link_to edit_lifeanamnese_path(@sick.lifeanamnese), class: 'btn btn-info text-white' do
+            = fa_icon :edit
+            = t('buttons.edit')
+          = link_to @sick.lifeanamnese, :method => :delete,
+          :data => { :confirm => t('buttons.confirm.lifeanamnese') },
+          class: 'btn btn-danger text-white' do
+            = fa_icon :times
+            = t('buttons.destroy')
+      - else
+        = link_to new_lifeanamnese_path(sick: @sick.id), class: 'btn btn-success text-white' do
+          = fa_icon :plus
+          = t('buttons.new.lifeanamnese')
+      -# #btnShowLifeanamnese
+      -#   .d-flex.justify-content-center
+      -#     %button.btn.btn-secondary{:id => "btnshowlifeanamnese"} Анамнез жизни
+      -# #lifeanamnese{:style => "display: none;"}
+  - unless @sick.lifeanamnese.nil?
+    .card-body
+      .row
+        .col-md-6
+          %p.card-text Деятельность:
+          .form-group
+            -# %p.card-text Контактные данные:
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:job)
+                %tr
+                  %td
+                    = @sick.lifeanamnese.job
+
+        .col-md-6
+          %p.card-text Данные о семье:
+          .form-group
+            -# %p.card-text Контактные данные:
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:marital_status)
+                  %td
+                    = @sick.lifeanamnese.marital_status
+                %tr
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:children)
+                  %td
+                    = @sick.lifeanamnese.children
+      %p.card-text Условия жизни:
+      .row
+        .col-md-12
+          .form-group
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:living_conditions)
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:nutrition)
+                %tr
+                  %td
+                    = @sick.lifeanamnese.living_conditions
+                  %td
+                    = @sick.lifeanamnese.nutrition
+      %p.card-text Вредные привычки:
+      .row
+        .col-md-12
+          .form-group
+            %table.table.table-bordered
+              %tbody
+                %tr
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:smoking)
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:alcohol_consumption)
+                  %th{:scope => "col"}
+                    = Lifeanamnese.human_attribute_name(:drug_use)
+                %tr
+                  %td
+                    = @sick.lifeanamnese.smoking
+                  %td
+                    = @sick.lifeanamnese.alcohol_consumption
+                  %td
+                    = @sick.lifeanamnese.drug_use
+%p
+.card
+  .card-header
+    .float-left
+      %h5 Истории болезней (????)
+      = link_to new_desease_record_path(sick: @sick.id), class: 'btn btn-success text-white' do
+        = fa_icon :plus
+        = t('buttons.new.lifeanamnese')
+    .float-right
+      - DeseaseRecord.all.where(sick_id: @sick.id).each do |e|
+        -if e.description.empty?
+          %p -
+        -else
+          %p
+            = e.description

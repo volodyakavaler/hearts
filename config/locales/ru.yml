@@ -1,0 +1,70 @@
+ru:
+  app:
+    name: Heart listiner
+  helpers:
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  buttons:
+    back: Назад
+    edit: Редактировать
+    destroy: Удалить
+    show: Показать
+    confirm:
+      sick: Действительно удалить пациента? Данное действие приведёт к удалению всех сведений о пациенте, включая все измерения!
+      lifeanamnese: Действительно удалить анамнез жизни пациента?
+    new:
+      sick: Новый пациент
+      lifeanamnese: Добавить анамнез жизни пациента
+    search:
+      sick: Найти пациента
+  breadcrumbs:
+    sicks: Пациенты
+  headers:
+    sicks:
+      edit: Редактирование пациента
+      new: Создание нового пациента
+      index: Список пациентов
+      search: Поиск пациентов
+  forms:
+    sick_search:
+      form:
+        first_name: По фамилии
+        last_name: По имени
+        patronymic: По отчеству
+        date_of_birth: По дате рождения
+      from: от
+      to: до
+      found: Найдено
+  views:
+    pagination:
+      first: ⇤
+      last: ⇥
+      previous: ←
+      next: →
+      truncate: …
+  activerecord:
+    models:
+      sick: Пациент
+    attributes:
+      lifeanamnese:
+        marital_status: Семейное положение
+        children: Дети
+        job: Род деятельности (работа/учёба)
+        living_conditions: Бытовые условия
+        nutrition: Питание
+        smoking: Курение
+        alcohol_consumption: Употребление алкоголя
+        drug_use: Приём наркотических препаратов
+        past_illnesses: Перенесённые заболевания
+      sick:
+        first_name: Фамилия
+        last_name: Имя
+        patronymic: Отчество
+        date_of_birth: Дата рождения
+        address: Адрес проживания
+        phone: Контактный телефон
+        policy: Медицинский полис
+        passport: Серия и номер паспорта
+        sex: Пол

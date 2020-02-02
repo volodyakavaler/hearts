@@ -1,0 +1,18 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.sicks.edit')
+
+%h1= t('headers.sicks.edit')
+= link_to sicks_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = "К списку пациентов"
+%p
+
+= render 'form'

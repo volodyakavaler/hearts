@@ -1,0 +1,55 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Hearts
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .wrapper.d-flex.align-items-stretch
+      =render 'sidebar'
+      -# %nav#sidebar
+        -# .custom-menu
+        -#   %button#sidebarCollapse.btn.btn-primary{:type => "button"}
+        -# .img.bg-wrap.text-center.py-4{:style => "background-image: url(images/bg_1.jpg);"}
+        -#   .user-logo
+        -#     .img{:style => "background-image: url(images/logo.jpg);"}
+        -#     %h3 Catriona Henderson
+        -# %ul.list-unstyled.components.mb-5
+        -#   %li.active
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-home.mr-3
+        -#       Home
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-download.mr-3.notif
+        -#         %small.d-flex.align-items-center.justify-content-center 5
+        -#       Download
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-gift.mr-3
+        -#       Gift Code
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-trophy.mr-3
+        -#       Top Review
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-cog.mr-3
+        -#       Settings
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-support.mr-3
+        -#       Support
+        -#   %li
+        -#     %a{:href => "#"}
+        -#       %span.fa.fa-sign-out.mr-3
+        -#       Sign Out
+      / Page Content
+      #content.p-4.p-md-5.pt-5
+        =render 'flash_messages'
+        -if content_for? :error_messages
+          =yield :error_messages
+        = yield

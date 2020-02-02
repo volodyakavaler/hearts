@@ -1,0 +1,127 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.sicks.search')
+
+%h1= t('headers.sicks.search')
+
+= link_to sicks_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
+= form_tag search_sicks_path(), method: :get do
+  .row
+    .col-md-3
+      .form-group
+        = Sick.human_attribute_name(:first_name)
+        = text_field_tag 'search[last_name]', params['search']['last_name'], class: 'form-control'
+    .col-md-3
+      .form-group
+        = Sick.human_attribute_name(:last_name)
+        = text_field_tag 'search[first_name]', params['search']['first_name'], class: 'form-control'
+    .col-md-3
+      .form-group
+        = Sick.human_attribute_name(:patronymic)
+        = text_field_tag 'search[patronymic]', params['search']['patronymic'], class: 'form-control'
+    .col-md-3
+      .form-group
+        = Sick.human_attribute_name(:date_of_birth)
+        = text_field_tag 'search[date_of_birth]', params['search']['date_of_birth'], class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = Sick.human_attribute_name(:policy)
+        = text_field_tag 'search[policy]', params['search']['policy'], class: 'form-control'
+    .col-md-4
+      .form-group
+        = Sick.human_attribute_name(:passport)
+        = text_field_tag 'search[passport]', params['search']['passport'], class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = Sick.human_attribute_name(:phone)
+        = text_field_tag 'search[phone]', params['search']['phone'], class: 'form-control'
+
+  .actions
+    = submit_tag t('buttons.search.sick'), class: 'btn btn-primary'
+
+
+%h1= t('forms.sick_search.found') + ": " + @sicks.size.to_s
+
+- if @sicks.size > 0
+  - @sicks.each do |sick|
+    .card
+      .card-header
+        Карточка пациента № #{sick.id.to_s} от #{sick.created_at.to_s}
+      .card-body
+        -# %h5.card-title Специальный заголовок
+        %p.card-text Основные данные:
+        .row
+          .col-md-12
+            .form-group
+              %table.table.table-bordered
+                %tbody
+                  %tr
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:first_name)
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:last_name)
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:patronymic)
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:date_of_birth)
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:sex)
+                  %tr
+                    %td
+                      = sick.first_name
+                    %td
+                      = sick.last_name
+                    %td
+                      = sick.patronymic
+                    %td
+                      = sick.date_of_birth
+                    %td
+                      = sick.sex
+        .row
+          .col-md-5
+            .form-group
+              %p.card-text Документы:
+              %table.table.table-bordered
+                %tbody
+                  %tr
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:policy)
+                    %td
+                      = sick.policy
+                  %tr
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:passport)
+                    %td
+                      = sick.passport
+          .col-md-7
+            .form-group
+              %p.card-text Контактные данные:
+              %table.table.table-bordered
+                %tbody
+                  %tr
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:address)
+                    %td
+                      = sick.address
+                  %tr
+                    %th{:scope => "col"}
+                      = Sick.human_attribute_name(:phone)
+                    %td
+                      = sick.phone
+        .float-right
+          = link_to sick, class: 'btn btn-warning text-white' do
+            = fa_icon :eye
+            = t('buttons.show')
+    %p

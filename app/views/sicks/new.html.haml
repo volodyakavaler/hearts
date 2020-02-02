@@ -1,0 +1,18 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.sicks.new')
+
+%h1= t('headers.sicks.new')
+= link_to sicks_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
+
+= render 'form'
