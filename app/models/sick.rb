@@ -6,8 +6,8 @@ class Sick < ApplicationRecord
   # validates :sex, presence: true
   # validate :date_of_birth_cannot_be_in_the_future
 
-  has_one :lifeanamnese
-  has_many :desease_records
+  has_one :lifeanamnese, dependent: :delete
+  has_many :desease_records, dependent: :delete_all
   # accepts_nested_attributes_for :lifeanamnese
 
   def date_of_birth_cannot_be_in_the_future
