@@ -1,7 +1,20 @@
-%h1 Editing desease_record
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item
+      = @desease_record.sick.first_name + " " + @desease_record.sick.last_name + " " + @desease_record.sick.date_of_birth.to_s + " " + @desease_record.sick.policy
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.deseaserecord.edit')
+
+%h1= t('headers.deseaserecord.edit')
+= link_to @desease_record, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
 
 = render 'form'
-
-= link_to 'Show', @desease_record
-\|
-= link_to 'Back', desease_records_path

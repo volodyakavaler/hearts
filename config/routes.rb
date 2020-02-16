@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :desease_record_notes
   resources :desease_records
   resources :points
   resources :lifeanamneses

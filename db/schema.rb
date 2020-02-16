@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_134901) do
+ActiveRecord::Schema.define(version: 2020_02_16_175224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "desease_record_notes", force: :cascade do |t|
+    t.date "record_date"
+    t.string "dynamics"
+    t.text "etc"
+    t.text "destination"
+    t.bigint "desease_record_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["desease_record_id"], name: "index_desease_record_notes_on_desease_record_id"
+  end
 
   create_table "desease_records", force: :cascade do |t|
     t.date "start_date"
@@ -66,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_134901) do
     t.index ["lifeanamnese_id"], name: "index_sicks_on_lifeanamnese_id"
   end
 
+  add_foreign_key "desease_record_notes", "desease_records"
   add_foreign_key "desease_records", "sicks"
   add_foreign_key "lifeanamneses", "sicks"
   add_foreign_key "sicks", "lifeanamneses"

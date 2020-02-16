@@ -1,24 +1,109 @@
-%p#notice= notice
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item
+      = @desease_record.sick.first_name + " " + @desease_record.sick.last_name + " " + @desease_record.sick.date_of_birth.to_s + " " + @desease_record.sick.policy
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = "История болезни № #{@desease_record.id.to_s} от #{@desease_record.start_date.to_s}"
+
+-# %h1= @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " /" + @sick.policy
+= link_to @desease_record.sick, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+
 
 %p
-  %b Start date:
-  = @desease_record.start_date
-%p
-  %b Finish date:
-  = @desease_record.finish_date
-%p
-  %b Result:
-  = @desease_record.result
-%p
-  %b Disease classification:
-  = @desease_record.disease_classification
-%p
-  %b Description:
-  = @desease_record.description
-%p
-  %b Sick:
-  = @desease_record.sick.id
 
-= link_to 'Edit', edit_desease_record_path(@desease_record)
-\|
-= link_to 'Back', desease_records_path
+.card
+  .card-header
+    .float-left
+      %h5 История болезни № #{@desease_record.id.to_s} от #{@desease_record.start_date.to_s}
+    .float-right
+      .btn-group{"aria-label" => "Basic example", :role => "group"}
+        -# TODO
+        %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+        = link_to edit_desease_record_path(@desease_record), class: 'btn btn-info text-white' do
+          = fa_icon :edit
+          = t('buttons.edit')
+        = link_to @desease_record, :method => :delete, :data => { :confirm => t('buttons.confirm.deseaserecord') }, class: 'btn btn-danger text-white' do
+          = fa_icon "skull-crossbones"
+          = t('buttons.destroy')
+  .card-body
+    %p.card-text Заголовок:
+    .row
+      .col-md-12
+        .form-group
+          %table.table.table-bordered
+            %tbody
+              %tr
+                %th{:scope => "col"}
+                  = DeseaseRecord.human_attribute_name(:start_date)
+                %th{:scope => "col"}
+                  = DeseaseRecord.human_attribute_name(:finish_date)
+                %th{:scope => "col"}
+                  = DeseaseRecord.human_attribute_name(:result)
+                %th{:scope => "col"}
+                  = DeseaseRecord.human_attribute_name(:disease_classification)
+                %th{:scope => "col"}
+                  = DeseaseRecord.human_attribute_name(:description)
+              %tr
+                %td
+                  = @desease_record.start_date
+                %td
+                  = @desease_record.finish_date
+                %td
+                  = @desease_record.result
+                %td
+                  = @desease_record.disease_classification
+                %td
+                  = @desease_record.description
+
+%p
+.card
+  .card-header
+    .float-left
+      %h5 Записи
+    .float-right
+      = link_to new_desease_record_note_path(desease_record: @desease_record.id), class: 'btn btn-success text-white' do
+        = fa_icon :plus
+        = t('buttons.new.deseaserecordnote')
+  - unless DeseaseRecordNote.all.where(desease_record_id: @desease_record.id).blank?
+    .list-group.list-group-flush
+      - DeseaseRecordNote.all.where(desease_record_id: @desease_record.id).each do |note|
+        .list-group-item
+          .row
+            .col-md-12
+              .form-group
+                .card
+                  .card-header
+                    .float-left
+                      = "Запись от #{note.record_date}"
+                    .float-right
+                      .btn-group.btn-group-sm{"aria-label" => "Basic example", :role => "group"}
+                        = link_to edit_desease_record_note_path(note), class: 'btn btn-info text-white' do
+                          = fa_icon :edit
+                          = t('buttons.edit')
+                        = link_to note, :method => :delete,
+                        :data => { :confirm => t('buttons.confirm.deseaserecordnote') },
+                        class: 'btn btn-danger text-white' do
+                          = fa_icon :times
+                          = t('buttons.destroy')
+                  .card-body
+                    .row
+                      .col-md-12
+                        - unless note.destination.blank?
+                          %p
+                            = DeseaseRecordNote.human_attribute_name(:destination) + ":"
+                          .col-md-12
+                            = note.destination
+                          %p
+                        - unless note.etc.blank?
+                          %p
+                            = DeseaseRecordNote.human_attribute_name(:etc) + ":"
+                          .col-md-12
+                            = note.etc

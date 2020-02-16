@@ -1,6 +1,6 @@
 ru:
   app:
-    name: Heart listiner
+    name: Hot Hearts
   helpers:
     submit:
       create: Сохранить
@@ -12,16 +12,28 @@ ru:
     destroy: Удалить
     show: Показать
     confirm:
-      sick: Действительно удалить пациента? Данное действие приведёт к удалению всех сведений о пациенте, включая все измерения!
+      sick: Действительно удалить пациента? Данное действие приведёт к удалению всех сведений о пациенте, все истории болезни, включая все измерения!
       lifeanamnese: Действительно удалить анамнез жизни пациента?
+      deseaserecord: Действительно удалить данную историю болезни пациента? Данное действие приведёт к удалению всех записей в истории болезни!
+      deseaserecordnote: Действительно удалить данную запись из истории болезни пациента?
     new:
+      deseaserecordnote: Добавить запись в историю болезни
       sick: Новый пациент
       lifeanamnese: Добавить анамнез жизни пациента
+      deseaserecord: Добавить историю болезни
     search:
       sick: Найти пациента
   breadcrumbs:
     sicks: Пациенты
   headers:
+    deseaserecordnote:
+      new: Создание новой записи в истории болезни
+      edit: Редактирование записи истории болезни
+    deseaserecord:
+      new: Создание новой истории болезни
+      edit: Редактирование истории болезни
+    lifeanamnese:
+      new: Создание анамнеза жизни
     sicks:
       edit: Редактирование пациента
       new: Создание нового пациента
@@ -47,6 +59,9 @@ ru:
   activerecord:
     models:
       sick: Пациент
+      lifeanamnese: Анамнез жизни
+      desease_record: История болезни
+      desease_record_note: Запись истории болезни
     attributes:
       lifeanamnese:
         marital_status: Семейное положение
@@ -68,3 +83,15 @@ ru:
         policy: Медицинский полис
         passport: Серия и номер паспорта
         sex: Пол
+      desease_record:
+        start_date: Дата начала
+        finish_date: Дата окончания
+        result: Результат лечения
+        disease_classification: МКБ-10
+        description: Описание
+        sick: Пациент
+      desease_record_note:
+        record_date: Дата записи
+        dynamics: Динамика
+        destination: Назначения и рекомендации
+        etc: Дополнительные сведения

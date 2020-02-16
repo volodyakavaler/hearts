@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Record date:
+  = @desease_record_note.record_date
+%p
+  %b Dynamics:
+  = @desease_record_note.dynamics
+%p
+  %b Etc:
+  = @desease_record_note.etc
+%p
+  %b Destination:
+  = @desease_record_note.destination
+%p
+  %b Desease record:
+  = @desease_record_note.desease_record
+
+= link_to 'Edit', edit_desease_record_note_path(@desease_record_note)
+\|
+= link_to 'Back', desease_record_notes_path

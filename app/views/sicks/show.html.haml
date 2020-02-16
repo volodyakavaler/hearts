@@ -190,14 +190,38 @@
 .card
   .card-header
     .float-left
-      %h5 Истории болезней (????)
+      %h5 Истории болезней
+
+    .float-right
       = link_to new_desease_record_path(sick: @sick.id), class: 'btn btn-success text-white' do
         = fa_icon :plus
-        = t('buttons.new.lifeanamnese')
-    .float-right
-      - DeseaseRecord.all.where(sick_id: @sick.id).each do |e|
-        -if e.description.empty?
-          %p -
-        -else
-          %p
-            = e.description
+        = t('buttons.new.deseaserecord')
+  - unless DeseaseRecord.all.where(sick_id: @sick.id).blank?
+    .card-body
+      .row
+        .col-md-12
+          .form-group
+            - DeseaseRecord.all.where(sick_id: @sick.id).each do |desease_record|
+              %ul.list-group
+                %li.list-group-item
+                  .row
+                    .col-md-1
+                      - if desease_record.finish_date.nil?
+                        = fa_icon "lock-open"
+                      - else
+                        = fa_icon "lock"
+                    .col-md-3
+                      = "#{desease_record.start_date.to_s} / #{desease_record.finish_date.to_s}"
+                    .col-md-2
+                      = desease_record.disease_classification
+                    .col-md-3
+                      = desease_record.description
+                    .col-md-3
+                      .float-right
+                        .btn-group{"aria-label" => "Basic example", :role => "group"}
+                          = link_to desease_record, class: 'btn btn-warning text-white' do
+                            = fa_icon :eye
+                          = link_to desease_record, :method => :delete,
+                          :data => { :confirm => t('buttons.confirm.deseaserecord') },
+                          class: 'btn btn-danger text-white' do
+                            = fa_icon :times

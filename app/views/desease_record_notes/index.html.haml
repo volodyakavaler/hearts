@@ -1,0 +1,29 @@
+%h1 Listing desease_record_notes
+
+%table
+  %thead
+    %tr
+      %th Record date
+      %th Dynamics
+      %th Etc
+      %th Destination
+      %th Desease record
+      %th
+      %th
+      %th
+
+  %tbody
+    - @desease_record_notes.each do |desease_record_note|
+      %tr
+        %td= desease_record_note.record_date
+        %td= desease_record_note.dynamics
+        %td= desease_record_note.etc
+        %td= desease_record_note.destination
+        %td= desease_record_note.desease_record
+        %td= link_to 'Show', desease_record_note
+        %td= link_to 'Edit', edit_desease_record_note_path(desease_record_note)
+        %td= link_to 'Destroy', desease_record_note, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Desease record note', new_desease_record_note_path

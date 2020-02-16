@@ -1,5 +1,20 @@
-%h1 New desease_record
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item
+      = @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " " + @sick.policy
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.deseaserecord.new')
+
+%h1= t('headers.deseaserecord.new')
+= link_to @sick, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
 
 = render 'form'
-
-= link_to 'Back', desease_records_path

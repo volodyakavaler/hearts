@@ -1,0 +1,22 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item
+      = @desease_record_note.desease_record.sick.first_name + " " + @desease_record_note.desease_record.sick.last_name + " " + @desease_record_note.desease_record.sick.date_of_birth.to_s + " " + @desease_record_note.desease_record.sick.policy
+    %li.breadcrumb-item
+      = "История болезни №" + @desease_record_note.desease_record.id.to_s
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.deseaserecordnote.new')
+
+%h1= t('headers.deseaserecordnote.new')
+= link_to @desease_record_note.desease_record, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
+
+= render 'form'

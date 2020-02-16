@@ -5,12 +5,12 @@
     .col-md-4
       .form-group
         = f.label :start_date
-        = f.date_select :start_date,  class: 'form-control'
+        = f.text_field :start_date,  class: 'form-control'
 
     .col-md-4
       .form-group
         = f.label :finish_date
-        = f.date_select :finish_date
+        = f.text_field :finish_date,  class: 'form-control'
     .col-md-3
       .form-group
         = f.label :result
@@ -20,10 +20,6 @@
       .form-group
         = f.label :disease_classification
         = f.text_field :disease_classification, class: 'form-control'
-
-    .col-md-4
-      .form-group
-        = f.label :sick_id
 
   .field
     = f.label :description

@@ -16,6 +16,7 @@ class DeseaseRecordsController < ApplicationController
 
   def new
     if params[:sick]
+      @sick = Sick.all.where(id: params[:sick]).last
       @desease_record = DeseaseRecord.new(sick_id: params[:sick])
     else
       @desease_record = DeseaseRecord.new
@@ -64,7 +65,7 @@ class DeseaseRecordsController < ApplicationController
   def destroy
     @desease_record.destroy
     respond_to do |format|
-      format.html { redirect_to desease_records_url, notice: 'Desease record was successfully destroyed.' }
+      format.html { redirect_to @desease_record.sick, notice: 'Desease record was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

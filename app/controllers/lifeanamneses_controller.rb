@@ -15,6 +15,7 @@ class LifeanamnesesController < ApplicationController
   # GET /lifeanamneses/new
   def new
     if params[:sick]
+      @sick = Sick.all.where(id: params[:sick]).last
       @lifeanamnese = Lifeanamnese.new(sick_id: params[:sick])
     else
       @lifeanamnese = Lifeanamnese.new

@@ -1,0 +1,26 @@
+= form_for @desease_record_note do |f|
+  = error_messages_for @desease_record_note
+  = f.hidden_field :desease_record_id, class: 'form-control'
+  .row
+    .col-md-5
+      .form-group
+        = f.label :record_date
+        = f.text_field :record_date, class: 'form-control'
+    .col-md-7
+      .form-group
+        = f.label :dynamics
+        = f.text_field :dynamics, class: 'form-control'
+
+  .row
+    .col-md-12
+      .form-group
+      = f.label :destination
+      = f.text_area :destination, class: 'form-control'
+  .row
+    .col-md-12
+      .form-group
+      = f.label :etc
+      = f.text_area :etc, class: 'form-control'
+  %p
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

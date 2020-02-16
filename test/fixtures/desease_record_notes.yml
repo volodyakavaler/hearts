@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  record_date: 2020-02-16
+  dynamics: MyString
+  etc: MyText
+  destination: MyText
+  desease_record: one
+
+two:
+  record_date: 2020-02-16
+  dynamics: MyString
+  etc: MyText
+  destination: MyText
+  desease_record: two

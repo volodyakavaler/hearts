@@ -6,7 +6,7 @@
       .img
         .background-image
           =image_tag('logo.png', height: '100', width: '100')
-      %h3 Heart Listiner
+      %h3 Hot Hearts
   %ul.list-unstyled.components.mb-5
     - side_bar_items.each do |item|
       - if item[:controller].to_s == controller.controller_name
