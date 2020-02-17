@@ -8,7 +8,7 @@ class Sick < ApplicationRecord
 
   has_one :lifeanamnese, dependent: :delete
   has_many :heart_programs, dependent: :delete_all
-  has_many :desease_records, dependent: :delete_all
+  has_many :desease_records, dependent: :destroy
   # accepts_nested_attributes_for :lifeanamnese
 
   def date_of_birth_cannot_be_in_the_future
