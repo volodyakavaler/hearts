@@ -13,10 +13,16 @@ module SideBarHelper
       :controller => :sicks,
       :action => :search
     }
+    result << {
+      :name => 'Устройства',
+      :icon => 'pager',
+      :controller => :devices,
+      :action => :index
+    }
     # result << {
     #   :name => 'Истории болезней',
     #   :icon => 'file-medical',
-    #   :controller => :diseases,
+    #   :controller => :desease_records,
     #   :action => :index
     # }
     result

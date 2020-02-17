@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Sick:
+  = @heart_program.sick
+%p
+  %b Device:
+  = @heart_program.device
+
+= link_to 'Edit', edit_heart_program_path(@heart_program)
+\|
+= link_to 'Back', heart_programs_path

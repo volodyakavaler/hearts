@@ -1,0 +1,51 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.devices.index')
+
+%h1= t('headers.devices.index')
+%table.table.table-hover.table-striped
+  %caption
+    = link_to new_device_path, class: 'btn btn-success text-white' do
+      = fa_icon :plus
+      = t('buttons.new.device')
+.row
+  - @devices.each do |device|
+    .col-md-6
+      .form-group
+        .card
+          .card-header
+            .float-left
+              %h6
+                = fa_icon "pager"
+                = device.name + " " + device.type_of_device
+            .float-right
+              .btn-group{"aria-label" => "Basic example", :role => "group"}
+                = link_to edit_device_path(device), class: 'btn btn-info text-white btn-sm' do
+                  = fa_icon :edit
+                  = t('buttons.edit')
+                - if device.heart_program.nil?
+                  = link_to device, :method => :delete,
+                  :data => { :confirm => t('buttons.confirm.device') },
+                  class: 'btn btn-danger text-white btn-sm' do
+                    = fa_icon :times
+                    = t('buttons.destroy')
+                - else
+                  = link_to device, :method => :delete,
+                  :data => { :confirm => t('buttons.confirm.device') },
+                  class: 'btn btn-danger text-white btn-sm disabled' do
+                    = fa_icon :times
+                    = t('buttons.destroy')
+          .card-body
+            - if device.heart_program.nil?
+              %button.btn.btn-outline-secondary.btn-sm.btn-block{:disabled => "disabled", :type => "button"} Пользователь не привязан
+            - else
+              .btn-group.btn-block{"aria-label" => "Basic example", :role => "group"}
+                = link_to device.heart_program.sick, class: 'btn btn-outline-secondary btn-sm text-black' do
+                  = fa_icon 'procedures'
+                  = device.heart_program.sick.last_name + " " + device.heart_program.sick.first_name + " / " + device.heart_program.sick.policy
+                = link_to device.heart_program, class: 'btn btn-outline-secondary btn-sm text-black' do
+                  = fa_icon 'file-medical-alt'

@@ -225,3 +225,36 @@
                           :data => { :confirm => t('buttons.confirm.deseaserecord') },
                           class: 'btn btn-danger text-white' do
                             = fa_icon :times
+%p
+.card
+  .card-header
+    .float-left
+      %h5 Устройства пациента
+
+    .float-right
+      = link_to new_heart_program_path(sick: @sick.id), class: 'btn btn-success text-white' do
+        = fa_icon :plus
+        = t('buttons.new.heartprogram')
+  - unless HeartProgram.all.where(sick_id: @sick.id).blank?
+    .card-body
+      .row
+        .col-md-12
+          .form-group
+            - HeartProgram.all.where(sick_id: @sick.id).each do |pr|
+              .card-body
+                .row
+                  .col-md-12
+                    .form-group
+                      .float-left
+                        %h5
+                          = pr.device.id.to_s + " " + pr.device.type_of_device + " " +  pr.device.name
+                      .float-right
+                        .btn-group{"aria-label" => "Basic example", :role => "group"}
+                          = link_to pr, class: 'btn btn-info text-white' do
+                            = fa_icon "file-medical-alt"
+                            = t('buttons.more')
+                          = link_to pr, :method => :delete,
+                          :data => { :confirm => t('buttons.confirm.heartprogram') },
+                          class: 'btn btn-danger text-white' do
+                            = fa_icon :times
+                            = t('buttons.destroy')

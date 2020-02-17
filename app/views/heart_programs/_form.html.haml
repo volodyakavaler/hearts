@@ -1,0 +1,11 @@
+= form_for @heart_program do |f|
+  = error_messages_for @heart_program
+  = f.hidden_field :sick_id, class: 'form-control'
+  .row
+    .col-md-12
+      .form-group
+        = f.label :device
+        = f.select :device_id, options_for_select(Device.all.map{|x|[x.id.to_s + ": " + x.name + " [" + x.type_of_device + "]", x.id]}, f.object.device_id),
+         {include_blank: false}, class: 'custom-select'
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :heart_programs
+  resources :devices
   resources :desease_record_notes
   resources :desease_records
   resources :points

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_16_175224) do
+ActiveRecord::Schema.define(version: 2020_02_17_121746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 2020_02_16_175224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sick_id"], name: "index_desease_records_on_sick_id"
+  end
+
+  create_table "devices", force: :cascade do |t|
+    t.string "name"
+    t.string "type_of_device"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "heart_programs", force: :cascade do |t|
+    t.bigint "sick_id"
+    t.bigint "device_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_heart_programs_on_device_id"
+    t.index ["sick_id"], name: "index_heart_programs_on_sick_id"
   end
 
   create_table "lifeanamneses", force: :cascade do |t|
@@ -79,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_02_16_175224) do
 
   add_foreign_key "desease_record_notes", "desease_records"
   add_foreign_key "desease_records", "sicks"
+  add_foreign_key "heart_programs", "devices"
+  add_foreign_key "heart_programs", "sicks"
   add_foreign_key "lifeanamneses", "sicks"
   add_foreign_key "sicks", "lifeanamneses"
 end

@@ -1,0 +1,17 @@
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.devices')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = t('headers.devices.edit')
+
+%h1= t('headers.devices.edit')
+= link_to devices_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
+= render 'form'
