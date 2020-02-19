@@ -21,7 +21,7 @@
             .float-left
               %h6
                 = fa_icon "pager"
-                = device.name + " " + device.type_of_device
+                = "[" + device.id.to_s + "] " + device.name + " " + device.type_of_device
             .float-right
               .btn-group{"aria-label" => "Basic example", :role => "group"}
                 = link_to edit_device_path(device), class: 'btn btn-info text-white btn-sm' do

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b X:
+  = @heart_point.x
+%p
+  %b Y:
+  = @heart_point.y
+%p
+  %b Heart result:
+  = @heart_point.heart_result
+
+= link_to 'Edit', edit_heart_point_path(@heart_point)
+\|
+= link_to 'Back', heart_points_path

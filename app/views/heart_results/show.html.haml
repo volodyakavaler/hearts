@@ -1,0 +1,17 @@
+%p#notice= notice
+
+%p
+  %b Sick:
+  = @heart_result.sick
+%p
+  %b Heart program:
+  = @heart_result.heart_program
+
+%p
+  - HeartPoint.all.where(heart_result_id: @heart_result.id).each do |x|
+    %p
+      = "#{x.x} ; #{x.y}"
+
+= link_to 'Edit', edit_heart_result_path(@heart_result)
+\|
+= link_to 'Back', heart_results_path

@@ -1,0 +1,19 @@
+= form_for @heart_point do |f|
+  - if @heart_point.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@heart_point.errors.count, "error")} prohibited this heart_point from being saved:"
+      %ul
+        - @heart_point.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :x
+    = f.text_field :x
+  .field
+    = f.label :y
+    = f.text_field :y
+  .field
+    = f.label :heart_result
+    = f.text_field :heart_result
+  .actions
+    = f.submit 'Save'

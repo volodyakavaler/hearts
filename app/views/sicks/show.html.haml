@@ -256,5 +256,40 @@
                           = link_to pr, :method => :delete,
                           :data => { :confirm => t('buttons.confirm.heartprogram') },
                           class: 'btn btn-danger text-white' do
-                            = fa_icon :times
-                            = t('buttons.destroy')
+                            = fa_icon "minus-square"
+                            = t('buttons.delete')
+%p
+- unless HeartResult.all.where(sick_id: @sick.id).blank?
+  .card
+    .card-header
+      .float-left
+        %h5 Истории показаний устройств
+    .card-body
+      .row
+        .col-md-12
+          .form-group
+            - HeartResult.all.where(sick_id: @sick.id).each do |hr|
+              .card-body
+                .row
+                  .col-md-12
+                    .form-group
+                      .float-left
+                        -# %h5
+                        -#   = pr.device.id.to_s + " " + pr.device.type_of_device + " " +  pr.device.name
+                      .float-right
+                        .btn-group{"aria-label" => "Basic example", :role => "group"}
+                          = link_to hr, class: 'btn btn-warning text-white' do
+                            = fa_icon :eye
+                            = t('buttons.show')
+                          - if hr.heart_program.nil?
+                            = link_to hr, :method => :delete,
+                            :data => { :confirm => t('buttons.confirm.heartresult') },
+                            class: 'btn btn-danger text-white' do
+                              = fa_icon :times
+                              = t('buttons.destroy')
+                          - else
+                            = link_to hr, :method => :delete,
+                            :data => { :confirm => t('buttons.confirm.heartresult') },
+                            class: 'btn btn-danger text-white disabled' do
+                              = fa_icon :times
+                              = t('buttons.destroy')

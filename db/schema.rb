@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_121746) do
+ActiveRecord::Schema.define(version: 2020_02_19_084819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2020_02_17_121746) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "heart_points", force: :cascade do |t|
+    t.float "x"
+    t.float "y"
+    t.bigint "heart_result_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["heart_result_id"], name: "index_heart_points_on_heart_result_id"
+  end
+
   create_table "heart_programs", force: :cascade do |t|
     t.bigint "sick_id"
     t.bigint "device_id"
@@ -52,6 +61,16 @@ ActiveRecord::Schema.define(version: 2020_02_17_121746) do
     t.datetime "updated_at", null: false
     t.index ["device_id"], name: "index_heart_programs_on_device_id"
     t.index ["sick_id"], name: "index_heart_programs_on_sick_id"
+  end
+
+  create_table "heart_results", force: :cascade do |t|
+    t.bigint "sick_id"
+    t.bigint "heart_program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "device_type"
+    t.index ["heart_program_id"], name: "index_heart_results_on_heart_program_id"
+    t.index ["sick_id"], name: "index_heart_results_on_sick_id"
   end
 
   create_table "lifeanamneses", force: :cascade do |t|
@@ -68,13 +87,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_121746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sick_id"], name: "index_lifeanamneses_on_sick_id"
-  end
-
-  create_table "points", force: :cascade do |t|
-    t.integer "x"
-    t.integer "y"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "sicks", force: :cascade do |t|
@@ -95,8 +107,11 @@ ActiveRecord::Schema.define(version: 2020_02_17_121746) do
 
   add_foreign_key "desease_record_notes", "desease_records"
   add_foreign_key "desease_records", "sicks"
+  add_foreign_key "heart_points", "heart_results"
   add_foreign_key "heart_programs", "devices"
   add_foreign_key "heart_programs", "sicks"
+  add_foreign_key "heart_results", "heart_programs"
+  add_foreign_key "heart_results", "sicks"
   add_foreign_key "lifeanamneses", "sicks"
   add_foreign_key "sicks", "lifeanamneses"
 end

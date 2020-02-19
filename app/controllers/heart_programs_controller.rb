@@ -15,6 +15,7 @@ class HeartProgramsController < ApplicationController
   # GET /heart_programs/new
   def new
     if params[:sick]
+      @sick = Sick.all.where(id: params[:sick]).last
       @heart_program = HeartProgram.new(sick_id: params[:sick])
     else
       @heart_program = HeartProgram.new
@@ -32,6 +33,9 @@ class HeartProgramsController < ApplicationController
 
     respond_to do |format|
       if @heart_program.save
+        @heart_result  = HeartResult.create(sick_id: @heart_program.sick.id,
+                                            heart_program_id: @heart_program.id,
+                                            device_type: @heart_program.device.type_of_device)
         format.html { redirect_to @heart_program.sick, notice: 'Heart program was successfully created.' }
         format.json { render :show, status: :created, location: @heart_program }
       else

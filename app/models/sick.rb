@@ -1,15 +1,14 @@
 class Sick < ApplicationRecord
-  # validates :first_name, :last_name, :date_of_birth, :address,
-  # :phone, :policy, :passport, presence: true
-  # validates :policy, length: { is: 16 }
-  # validates :phone, length: { is: 11 }
-  # validates :sex, presence: true
-  # validate :date_of_birth_cannot_be_in_the_future
+  validates :first_name, :last_name, :date_of_birth, :address,
+  :phone, :policy, :passport, presence: true
+  validates :policy, length: { is: 16 }
+  validates :phone, length: { is: 11 }
+  validates :sex, presence: true
+  validate :date_of_birth_cannot_be_in_the_future
 
   has_one :lifeanamnese, dependent: :delete
   has_many :heart_programs, dependent: :delete_all
   has_many :desease_records, dependent: :destroy
-  # accepts_nested_attributes_for :lifeanamnese
 
   def date_of_birth_cannot_be_in_the_future
     if !date_of_birth.nil?

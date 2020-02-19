@@ -1,0 +1,25 @@
+%h1 Listing heart_results
+
+%table
+  %thead
+    %tr
+      %th Sick
+      %th Heart program
+      %th Device_Type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @heart_results.each do |heart_result|
+      %tr
+        %td= heart_result.sick
+        %td= heart_result.heart_program
+        %td= heart_result.device_type
+        %td= link_to 'Show', heart_result
+        %td= link_to 'Edit', edit_heart_result_path(heart_result)
+        %td= link_to 'Destroy', heart_result, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Heart result', new_heart_result_path

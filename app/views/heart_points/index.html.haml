@@ -1,0 +1,25 @@
+%h1 Listing heart_points
+
+%table
+  %thead
+    %tr
+      %th X
+      %th Y
+      %th Heart result
+      %th
+      %th
+      %th
+
+  %tbody
+    - @heart_points.each do |heart_point|
+      %tr
+        %td= heart_point.x
+        %td= heart_point.y
+        %td= heart_point.heart_result
+        %td= link_to 'Show', heart_point
+        %td= link_to 'Edit', edit_heart_point_path(heart_point)
+        %td= link_to 'Destroy', heart_point, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Heart point', new_heart_point_path

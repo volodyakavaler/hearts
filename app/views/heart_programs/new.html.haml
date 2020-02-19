@@ -1,5 +1,21 @@
-%h1 New heart_program
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    -# TODO
+    -# %li.breadcrumb-item
+    -#   = @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " " + @sick.policy
+    -# %li.breadcrumb-item.active{"aria-current" => "page"}
+    -#   = t('headers.heartprogram.new')
+
+%h1= t('headers.heartprogram.new')
+= link_to @sick, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
+%p
 
 = render 'form'
-
-= link_to 'Back', heart_programs_path
