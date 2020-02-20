@@ -34,6 +34,8 @@ class HeartPointsController < ApplicationController
 
       respond_to do |format|
         if @heart_point.save
+          # TODO
+          ActionCable.server.broadcast "pointset_channel", foo: @heart_point.x
           format.html { redirect_to @heart_point, notice: 'Heart point was successfully created.' }
           format.json { render :show, status: :created, location: @heart_point }
         else
