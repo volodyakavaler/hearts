@@ -6,4 +6,4 @@ App.pointset = App.cable.subscriptions.create "PointsetChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    alert data.foo
+    # alert data.foo

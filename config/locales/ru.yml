@@ -84,6 +84,7 @@ ru:
       device:
         name: Название
         type_of_device: Тип
+        uid: UID
       lifeanamnese:
         marital_status: Семейное положение
         children: Дети

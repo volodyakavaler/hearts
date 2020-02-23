@@ -10,7 +10,8 @@ render_sinus = ->
       label: 'Test'
       data: sinusResult
       showLine: true
-      lineTension: 0
+      lineTension: 0.3
+      pointRadius: 0
       fill: false
       borderColor: 'rgb(75, 192, 192)'
     } ]

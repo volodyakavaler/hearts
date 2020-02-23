@@ -24,11 +24,8 @@ class HeartPointsController < ApplicationController
   # POST /heart_points
   # POST /heart_points.json
   def create
-    current_device = Device.all.where(id: params["device"]).first
+    current_device = Device.all.where(uid: params["device"]).first
     unless current_device.heart_program.nil?
-      # puts current_device.heart_program.sick.id
-      # puts current_device.heart_program.heart_result.id
-      # puts("\n\n\n\n\n\n\n\n\n\n")
       @heart_point = HeartPoint.new(heart_point_params)
       @heart_point.heart_result_id = current_device.heart_program.heart_result.id
 
