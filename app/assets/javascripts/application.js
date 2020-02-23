@@ -19,4 +19,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require jquery-ui/datepicker
+//= require Chart.min
 //= require_tree .

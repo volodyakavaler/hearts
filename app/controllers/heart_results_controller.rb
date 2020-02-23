@@ -10,6 +10,7 @@ class HeartResultsController < ApplicationController
   # GET /heart_results/1
   # GET /heart_results/1.json
   def show
+    @heart_result_JSON = @heart_result.heart_points.to_json(:only => [:x, :y])
   end
 
   # GET /heart_results/new

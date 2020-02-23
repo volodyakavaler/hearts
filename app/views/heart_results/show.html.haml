@@ -1,17 +1,36 @@
-%p#notice= notice
+-# %p#notice= notice
+-#
+-# %p
+-#   %b Sick:
+-#   = @heart_result.sick
+-# %p
+-#   %b Heart program:
+-#   = @heart_result.heart_program
+-#
+-# %p
+-#   - HeartPoint.all.where(heart_result_id: @heart_result.id).each do |x|
+-#     %p
+-#       = "#{x.x} ; #{x.y}"
+-#
+-# = link_to 'Edit', edit_heart_result_path(@heart_result)
+-# \|
+-# = link_to 'Back', heart_results_path
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      = t('breadcrumbs.sicks')
+    %li.breadcrumb-item
+      = @heart_result.sick.first_name + " " + @heart_result.sick.last_name + " " + @heart_result.sick.date_of_birth.to_s + " " + @heart_result.sick.policy
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = "Результаты показаний с устройства ..." #TODO
 
-%p
-  %b Sick:
-  = @heart_result.sick
-%p
-  %b Heart program:
-  = @heart_result.heart_program
+%h1= @heart_result.sick.first_name + " " + @heart_result.sick.last_name + " " + @heart_result.sick.date_of_birth.to_s
+= link_to @heart_result.sick, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
 
-%p
-  - HeartPoint.all.where(heart_result_id: @heart_result.id).each do |x|
-    %p
-      = "#{x.x} ; #{x.y}"
-
-= link_to 'Edit', edit_heart_result_path(@heart_result)
-\|
-= link_to 'Back', heart_results_path
+=render 'sinus_result'
