@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'monitor/index'
   resources :heart_points
   resources :heart_results
   resources :heart_programs

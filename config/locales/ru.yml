@@ -85,6 +85,7 @@ ru:
         name: Название
         type_of_device: Тип
         uid: UID
+        write_permission: Запись
       lifeanamnese:
         marital_status: Семейное положение
         children: Дети

@@ -25,20 +25,29 @@ class HeartPointsController < ApplicationController
   # POST /heart_points.json
   def create
     current_device = Device.all.where(uid: params["device"]).first
+    points = params["ys"]
     unless current_device.heart_program.nil?
-      @heart_point = HeartPoint.new(heart_point_params)
-      @heart_point.heart_result_id = current_device.heart_program.heart_result.id
-
-      respond_to do |format|
-        if @heart_point.save
-          # TODO
-          ActionCable.server.broadcast "pointset_channel", foo: @heart_point.x
-          format.html { redirect_to @heart_point, notice: 'Heart point was successfully created.' }
-          format.json { render :show, status: :created, location: @heart_point }
-        else
-          format.html { render :new }
-          format.json { render json: @heart_point.errors, status: :unprocessable_entity }
+      points.each do |pnt|
+        @heart_point = HeartPoint.new()
+        @heart_point.x = Time.now
+        @heart_point.y = pnt
+        @heart_point.heart_result_id = current_device.heart_program.heart_result.id
+        if current_device.write_permission
+          @heart_point.save
         end
+
+        ActionCable.server.broadcast "pointset_channel", {data: @heart_point.y, uid: current_device.uid.to_s}
+        # respond_to do |format|
+          # if @heart_point.save
+          #   # TODO
+          #   ActionCable.server.broadcast "pointset_channel", foo: @heart_point.x
+          #   format.html { redirect_to @heart_point, notice: 'Heart point was successfully created.' }
+          #   format.json { render :show, status: :created, location: @heart_point }
+          # else
+          #   format.html { render :new }
+          #   format.json { render json: @heart_point.errors, status: :unprocessable_entity }
+          # end
+        # end
       end
     end
   end

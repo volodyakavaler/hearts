@@ -20,4 +20,6 @@
 //= require turbolinks
 //= require jquery-ui/datepicker
 //= require Chart.min
+//= require moment
+//= require smoothie
 //= require_tree .

@@ -26,7 +26,7 @@
     .float-right
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         -# TODO
-        %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+        -# %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
         = link_to edit_desease_record_path(@desease_record), class: 'btn btn-info text-white' do
           = fa_icon :edit
           = t('buttons.edit')

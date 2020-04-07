@@ -19,22 +19,22 @@ module SideBarHelper
       :controller => :devices,
       :action => :index
     }
-    result << {
-      :name => '* Результаты (связь)',
-      :icon => 'pager',
-      :controller => :heart_results,
-      :action => :index
-    }
-    result << {
-      :name => '* Points',
-      :icon => 'pager',
-      :controller => :heart_points,
-      :action => :index
-    }
     # result << {
-    #   :name => 'Истории болезней',
-    #   :icon => 'file-medical',
-    #   :controller => :desease_records,
+    #   :name => '* Результаты (связь)',
+    #   :icon => 'pager',
+    #   :controller => :heart_results,
+    #   :action => :index
+    # }
+    # result << {
+    #   :name => '* Points',
+    #   :icon => 'pager',
+    #   :controller => :heart_points,
+    #   :action => :index
+    # }
+    # result << {
+    #   :name => 'Мониторинг',
+    #   :icon => 'desktop',
+    #   :controller => :monitor,
     #   :action => :index
     # }
     result

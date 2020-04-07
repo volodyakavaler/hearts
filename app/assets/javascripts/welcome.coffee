@@ -8,12 +8,5 @@ fullHeight = ->
     return
   return
 
-# fullHeight = ->
-#   $('.js-fullheight').css 'height', $(window).height()
-#   $(window).resize ->
-#     $('.js-fullheight').css 'height', $(window).height()
-#     return
-#   return
-
 $(document).on 'turbolinks:load', fullHeight # Включаем при ajax обновлении страницы
 $(document).ready fullHeight # Включаем при обычном обновлении страницы

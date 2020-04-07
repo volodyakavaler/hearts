@@ -10,7 +10,7 @@
       = @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " " + @sick.policy
 
 %h1= @sick.first_name + " " + @sick.last_name + " " + @sick.date_of_birth.to_s + " /" + @sick.policy
-= link_to sicks_path, class: 'btn btn-secondary text-white' do
+= link_to search_sicks_path, class: 'btn btn-secondary text-white' do
   = fa_icon "long-arrow-alt-left"
   = t('buttons.back')
 
@@ -24,7 +24,7 @@
     .float-right
       .btn-group{"aria-label" => "Basic example", :role => "group"}
         -# TODO
-        %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+        -# %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
         = link_to edit_sick_path(@sick), class: 'btn btn-info text-white' do
           = fa_icon :edit
           = t('buttons.edit')
@@ -101,7 +101,7 @@
       - unless @sick.lifeanamnese.nil?
         .btn-group{"aria-label" => "Basic example", :role => "group"}
           -# TODO
-          %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
+          -# %button.btn.btn-secondary{:type => "button"} Скрыть (пока не работает)
           = link_to edit_lifeanamnese_path(@sick.lifeanamnese), class: 'btn btn-info text-white' do
             = fa_icon :edit
             = t('buttons.edit')
@@ -274,8 +274,8 @@
                   .col-md-12
                     .form-group
                       .float-left
-                        -# %h5
-                        -#   = pr.device.id.to_s + " " + pr.device.type_of_device + " " +  pr.device.name
+                        %h5
+                          = hr.created_at.to_s + " / " + hr.device_type
                       .float-right
                         .btn-group{"aria-label" => "Basic example", :role => "group"}
                           = link_to hr, class: 'btn btn-warning text-white' do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_23_185804) do
+ActiveRecord::Schema.define(version: 2020_04_05_131255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(version: 2020_02_23_185804) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "uid"
+    t.boolean "write_permission"
   end
 
   create_table "heart_points", force: :cascade do |t|
-    t.float "x"
+    t.float "y"
     t.bigint "heart_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "y"
+    t.datetime "x"
     t.index ["heart_result_id"], name: "index_heart_points_on_heart_result_id"
   end
 

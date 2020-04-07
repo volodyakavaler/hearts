@@ -11,9 +11,13 @@
 
 %h1= t('headers.sicks.search')
 
-= link_to sicks_path, class: 'btn btn-secondary text-white' do
-  = fa_icon "long-arrow-alt-left"
-  = t('buttons.back')
+.btn-group{"aria-label" => "Basic example", :role => "group"}
+  = link_to sicks_path, class: 'btn btn-secondary text-white' do
+    = fa_icon "procedures"
+    = 'К списку пациентов'
+  = link_to new_sick_path, class: 'btn btn-success text-white' do
+    = fa_icon :plus
+    = t('buttons.new.sick')
 %p
 = form_tag search_sicks_path(), method: :get do
   .row

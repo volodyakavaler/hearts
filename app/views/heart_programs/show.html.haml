@@ -1,12 +1,17 @@
-%p#notice= notice
+%nav{"aria-label" => "breadcrumb"}
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => "#"}
+      Главная
+    %li.breadcrumb-item
+      = t('headers.devices.index')
+    %li.breadcrumb-item.active{"aria-current" => "page"}
+      = "[" + @heart_program.device.uid.to_s + "] " + @heart_program.device.name + " " + @heart_program.device.type_of_device
 
+%h1= "Приём данных от [" + @heart_program.device.uid.to_s + "] " + @heart_program.device.name + " " + @heart_program.device.type_of_device
+= link_to devices_path, class: 'btn btn-secondary text-white' do
+  = fa_icon "long-arrow-alt-left"
+  = t('buttons.back')
 %p
-  %b Sick:
-  = @heart_program.sick
-%p
-  %b Device:
-  = @heart_program.device
-
-= link_to 'Edit', edit_heart_program_path(@heart_program)
-\|
-= link_to 'Back', heart_programs_path
+%canvas#mycanvas{:height => "100", :width => "1040", :uid => @heart_program.device.uid}
+-# =render 'device_result'

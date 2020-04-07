@@ -33,4 +33,6 @@
   = fa_icon "long-arrow-alt-left"
   = t('buttons.back')
 
-=render 'sinus_result'
+=render 'render_results'
+- for i in 0 .. points_size(@heart_result.id) do
+  %canvas{:id => "myChart#{i}", :height => "200", :width => "1040"}
